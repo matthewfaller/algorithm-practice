@@ -1,2 +1,3 @@
-# algorithm-practice
-A series of practice algorithms implemented in Java &amp; Swift. 
+## Algorithms & Data Structures
+
+Programming practice implemented in Java &amp; Swift. 
