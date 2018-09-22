@@ -1,4 +1,0 @@
-steps:
-- name: 'swift'
-  entrypoint: 'swift'
-  args: ['test']

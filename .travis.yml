@@ -1,4 +1,9 @@
-language: swift
-script: swift test
+sudo: required
+
+services:
+  - docker
+
+# language: swift
+# script: swift test
 
   #.travis.yml
