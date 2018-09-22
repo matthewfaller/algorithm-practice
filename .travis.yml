@@ -1,10 +1,11 @@
 sudo: required
-language: bash
-os: trusty
+language: swift
+os: linux
+dist: trusty
 services:
   - docker
 
-script: docker run swift /bin/bash -c "git clone https://github.com/matthewfaller/algorithm-practice.git && cd algorithm-practice && swift test" 
+script: docker run swift /bin/bash -c "git clone https://github.com/matthewfaller/algorithm-practice.git && cd algorithm-practice && git checkout $TRAVIS_COMMIT && swift test" 
 
 # {
 #   "os": "linux",
