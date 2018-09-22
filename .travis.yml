@@ -1,6 +1,7 @@
 env:
-  - SWIFT_VERSION=4.2
-  - REPOSITORY_URL=https://github.com/matthewfaller/algorithm-practice.git
+  global:
+    - SWIFT_VERSION=4.2
+    - REPOSITORY_URL=https://github.com/matthewfaller/algorithm-practice.git
 
 sudo: required
 language: generic
