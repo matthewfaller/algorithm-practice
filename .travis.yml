@@ -1,11 +1,7 @@
-
-
 env:
   global:
     - SWIFT_VERSION=4.2
     - REPOSITORY_URL=https://github.com/matthewfaller/algorithm-practice.git
-      if: type = push
-      - GIT_TARGET=$TRAVIS_COMMIT
     
 sudo: required
 language: generic
@@ -15,18 +11,3 @@ services:
   - docker
 
 script: docker run swift:$SWIFT_VERSION /bin/bash -c "git clone $REPOSITORY_URL && cd algorithm-practice && git checkout $TRAVIS_COMMIT && swift test" 
-
-# {
-#   "os": "linux",
-#   "dist": "trusty",
-#   "sudo": "required",
-#   "group": "stable",
-#   "language": "bash",
-#   "services": [
-#     "docker"
-#   ]
-# }
-# language: swift
-# script: swift test
-
-  #.travis.yml
