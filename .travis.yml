@@ -1,8 +1,10 @@
+if: type = push
+
 env:
   global:
     - SWIFT_VERSION=4.2
     - REPOSITORY_URL=https://github.com/matthewfaller/algorithm-practice.git
-
+    
 sudo: required
 language: generic
 os: linux
