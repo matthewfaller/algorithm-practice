@@ -4,8 +4,8 @@ env:
   global:
     - SWIFT_VERSION=4.2
     - REPOSITORY_URL=https://github.com/matthewfaller/algorithm-practice.git
-    if: type = push
-    - GIT_TARGET=$TRAVIS_COMMIT
+      if: type = push
+      - GIT_TARGET=$TRAVIS_COMMIT
     
 sudo: required
 language: generic
