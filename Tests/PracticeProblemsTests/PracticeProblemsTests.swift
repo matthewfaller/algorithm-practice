@@ -8,7 +8,7 @@ final class PracticeProblemsTests: XCTestCase {
     }
     
     func testExample() {
-        XCTFail("Oh, crap!")
+        
     }
 
 
