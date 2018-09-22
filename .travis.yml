@@ -11,7 +11,7 @@ services:
   - docker
 
 script: 
-  - if [ "$TRAVIS_EVENT_TYPE" = "push" ]; then GIT_TARGET="$TRAVIS_COMMIT" else GIT_TARGET="$TRAVIS_PULL_REQUEST_SHA" fi
+  - '[ "$TRAVIS_EVENT_TYPE" == "push" ] && GIT_TARGET="$TRAVIS_COMMIT" || GIT_TARGET="$TRAVIS_PULL_REQUEST_SHA"'
   - echo "Configured Item to Checkout = $GIT_TARGET"
   - docker run swift:$SWIFT_VERSION /bin/bash -c "git clone $REPOSITORY_URL && cd algorithm-practice && git checkout $GIT_TARGET && swift test"
 # stages:
