@@ -1,5 +1,5 @@
 sudo: required
-language: swift
+language: generic
 os: linux
 dist: trusty
 services:
