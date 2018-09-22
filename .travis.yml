@@ -1,4 +1,19 @@
-language: swift
-script: swift test
+env:
+  global:
+    - SWIFT_VERSION=4.2
+    - REPOSITORY_URL=https://github.com/matthewfaller/algorithm-practice.git
 
-  #.travis.yml
+sudo: required
+language: generic
+os: linux
+dist: trusty
+services:
+  - docker
+
+script: 
+  - echo "$TRAVIS_EVENT_TYPE"
+  - '[ "$TRAVIS_EVENT_TYPE" == "push" ] && GIT_TARGET="$TRAVIS_COMMIT" || GIT_TARGET="$TRAVIS_PULL_REQUEST_SHA"'
+  - echo "Configured Item to Checkout = $GIT_TARGET"
+  - docker run swift:$SWIFT_VERSION /bin/bash -c "git clone $REPOSITORY_URL && cd algorithm-practice && git checkout $GIT_TARGET && swift test"
+
+
