@@ -1,5 +1,5 @@
 sudo: required
-language: swift
+language: bash
 services:
   - docker
 
