@@ -10,16 +10,17 @@ dist: trusty
 services:
   - docker
 
-stages:
-  - name: PullTests
-    if: type = pull_request
-    script: docker run swift:$SWIFT_VERSION /bin/bash -c "git clone $REPOSITORY_URL && cd algorithm-practice && git checkout $TRAVIS_PULL_REQUEST_SHA && swift test" 
-  - name: PushTests
-    if: type = push
-    script: docker run swift:$SWIFT_VERSION /bin/bash -c "git clone $REPOSITORY_URL && cd algorithm-practice && git checkout $TRAVIS_COMMIT && swift test" 
+script: docker run swift:$SWIFT_VERSION /bin/bash -c "git clone $REPOSITORY_URL && cd algorithm-practice && git checkout $TRAVIS_COMMIT && swift test" 
+# stages:
+#   - name: PullTests
+#     if: type = pull_request
+#     script: docker run swift:$SWIFT_VERSION /bin/bash -c "git clone $REPOSITORY_URL && cd algorithm-practice && git checkout $TRAVIS_PULL_REQUEST_SHA && swift test" 
+#   - name: PushTests
+#     if: type = push
+    
   
-jobs:  
-  include:
-    - stage: PullTests
-    - stage: PushTests  
+# jobs:  
+#   include:
+#     - stage: PullTests
+#     - stage: PushTests  
 
