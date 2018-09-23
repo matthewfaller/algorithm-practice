@@ -52,6 +52,8 @@
 
 <p><a href="https://travis-ci.com/matthewfaller/algorithm-practice"><img src="https://travis-ci.com/matthewfaller/algorithm-practice.svg?branch=develop" alt="Build Status"></a></p>
 
+<p><a href="https://matthewfaller.github.io/algorithm-practice/"><img src="https://img.shields.io/badge/read_the-docs-2196f3.svg" alt="docs"></a></p>
+
 <p>Programming practice implemented in Swift</p>
 <h2 id='running-the-project' class='heading'>Running The Project</h2>
 <pre class="highlight shell"><code>git clone https://github.com/matthewfaller/algorithm-practice
@@ -63,13 +65,33 @@
 <h3 id='linked-list' class='heading'>Linked List</h3>
 
 <p>A simple implementation of a classic structure</p>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">numbers</span> <span class="o">=</span> <span class="kt">LinkedList</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">list</span> <span class="o">=</span> <span class="kt">LinkedList</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="n">list</span><span class="o">.</span><span class="nf">append</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">)</span>
+<span class="n">list</span><span class="o">.</span><span class="nf">append</span><span class="p">(</span><span class="s">"World!"</span><span class="p">)</span>
+</code></pre>
+
+<p>Conforms to the <code>Sequence</code> Protocol</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">numbers</span><span class="p">:</span> <span class="kt">LinkedList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 
 <span class="k">let</span> <span class="nv">factorial</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="nf">reduce</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span>
 
 <span class="nf">print</span><span class="p">(</span><span class="n">factorial</span><span class="p">)</span>
 
 <span class="mi">24</span>
+</code></pre>
+
+<p>Uses generics</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">User</span><span class="p">:</span> <span class="kt">Codable</span><span class="p">,</span> <span class="kt">Hashable</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span>
+    <span class="k">let</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">users</span><span class="p">:</span> <span class="kt">LinkedList</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="kt">User</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"1"</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="s">"Emily Blunt"</span><span class="p">),</span> 
+    <span class="kt">User</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"2"</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="s">"John Krasinski"</span><span class="p">)</span> 
+<span class="p">]</span>
+
+<span class="n">users</span><span class="o">.</span><span class="nf">filter</span><span class="p">(</span><span class="n">isActor</span><span class="p">)</span><span class="o">.</span><span class="nf">forEach</span><span class="p">(</span><span class="n">updateUser</span><span class="p">)</span>
 </code></pre>
 
           </section>
