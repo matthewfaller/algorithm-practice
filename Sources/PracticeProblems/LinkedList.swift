@@ -7,10 +7,10 @@ public final class LinkedList<T: Equatable> {
     /**
     Create a new linked list
 
-    - Parameter element: An element to store in this linked list
+    - Parameter element: An element to add to the list. 
     */
-    public init(with element: T) {
-        self.data = element
+    public convenience init(_ element: T) {
+        self.init(arrayLiteral: element)
     }
 
     /**
@@ -18,7 +18,7 @@ public final class LinkedList<T: Equatable> {
 
     - Parameter elements: A list of zero or more elements to add to the list. 
     */
-    public init(of elements: T...) {
+    public init(elements: [T]) {
         var elements = elements
 
         if elements.isEmpty {
@@ -60,7 +60,7 @@ public final class LinkedList<T: Equatable> {
             return isExistingNode
         } 
         
-        return LinkedList<T>(with: element)
+        return LinkedList(element)
     }
 
     /**
@@ -114,6 +114,13 @@ extension LinkedList: Sequence {
 
     public func makeIterator() -> LinkedListIterator<T> {
         return LinkedListIterator<T>(self)
+    }
+}
+
+extension LinkedList: ExpressibleByArrayLiteral {
+    
+    public convenience init(arrayLiteral: T...) {
+        self.init(elements: arrayLiteral)
     }
 }
 
