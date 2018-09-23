@@ -27,7 +27,7 @@ xcuserdata/
 *.ipa
 *.dSYM.zip
 *.dSYM
-
+PracticeProblems.xcodeproj/**
 ## Playgrounds
 timeline.xctimeline
 playground.xcworkspace
