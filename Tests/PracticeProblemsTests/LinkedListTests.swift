@@ -6,7 +6,7 @@ final class LinkedListTests: XCTestCase {
     private var list: LinkedList<String>! 
 
     override func setUp() {
-        list = LinkedList(with: "TestValue")
+        list = LinkedList("TestValue")
     }
     
     func testCanInitializeLinkedList() {
@@ -138,7 +138,7 @@ final class LinkedListTests: XCTestCase {
     }
 
     func testVariadicConstructorHasCorrectCount() {
-        let numbers = LinkedList(of: 1, 2, 3, 4)
+        let numbers: LinkedList = [1, 2, 3, 4]
 
         let result = numbers.count
         let expected = 4
@@ -146,7 +146,7 @@ final class LinkedListTests: XCTestCase {
     }
 
     func testVariadicOneArgHasCorrectCount() {
-        let numbers = LinkedList(of: 1)
+        let numbers = LinkedList(1)
 
         let result = numbers.count
         let expected = 1
@@ -186,11 +186,30 @@ final class LinkedListTests: XCTestCase {
     }
 
     func testFactorialImplementation() {
-        let numbers = LinkedList(of: 1, 2, 3, 4)
+        let numbers: LinkedList = [1, 2, 3, 4]
 
         let factorial = numbers.reduce(1, *)
         let expected  = 24
         XCTAssertEqual(expected, factorial)
+    }
+
+    func testWorksWithHashable() {
+        let users: LinkedList = [
+            UserModel(id: "1", name: "Emily Blunt"),
+            UserModel(id: "2", name: "John Krasinski")
+        ]
+        
+        let result = users.count
+        let expected = 2
+        XCTAssertEqual(expected, result)
+    }
+
+    func testVariadicTwoArgHasCorrectCount() {
+        let numbers: LinkedList = [1, 2]
+        
+        let result = numbers.count
+        let expected = 2
+        XCTAssertEqual(expected, result)
     }
 
     static var allTests = [
@@ -209,4 +228,9 @@ extension LinkedListTests {
     private func assertTrue( _ result: Bool) {
         XCTAssertTrue(result)
     }
+}
+
+fileprivate struct UserModel: Codable, Hashable {
+    let id: String
+    let name: String
 }
