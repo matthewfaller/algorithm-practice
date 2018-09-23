@@ -20,9 +20,11 @@ extension LinkedListTests {
         ("testRootHasCorrectData", testRootHasCorrectData),
         ("testVariadicConstructorHasCorrectCount", testVariadicConstructorHasCorrectCount),
         ("testVariadicOneArgHasCorrectCount", testVariadicOneArgHasCorrectCount),
+        ("testVariadicTwoArgHasCorrectCount", testVariadicTwoArgHasCorrectCount),
         ("testVariadicZeroArgHasCorrectCount", testVariadicZeroArgHasCorrectCount),
         ("testVariadicZeroArgWillContainLaterAdditions", testVariadicZeroArgWillContainLaterAdditions),
         ("testVariadicZeroArgWorksProperly", testVariadicZeroArgWorksProperly),
+        ("testWorksWithHashable", testWorksWithHashable),
     ]
 }
 
