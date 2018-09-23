@@ -1,23 +1,52 @@
 
 /**
-An Elementary Example of a singly linked list. 
+An elementary example of a singly linked list
 */
 public final class LinkedList<T: Equatable> {
 
+    /**
+    Create a new linked list
+
+    - Parameter element: An element to store in this linked list
+    */
     public init(with element: T) {
         self.data = element
     }
 
+    /**
+    Create a new linked list
+
+    - Parameter elements: A list of zero or more elements to add to the list. 
+    */
+    public init(of elements: T...) {
+        var elements = elements
+
+        if elements.isEmpty {
+            count = 0
+            return
+        }
+
+        self.data = elements.removeFirst()
+        elements.forEach(append)
+    }
+
+    /**
+    The current number of elements in the list
+    */
     public private(set) var count: Int = 1
 
-    public var data: T?
+    internal var data: T?
 
-    private var next: LinkedList<T>?
+    internal var next: LinkedList<T>?
     
     /**
     Appends an element to the end of the linked list.
+    ```
     a -> b -> c
     a -> b -> c -> [d]
+    ```
+
+    - Parameter element: An element to append to the linked list. 
     */
     public func append(_ element: T) {        
         next?.append(element)
@@ -37,18 +66,10 @@ public final class LinkedList<T: Equatable> {
     /**
     Removes an element from the linked list. 
 
-    Example: removing 'c'
-
-    [a] -> b -> c -> d 
-
-     a -> [b] -> c -> d 
-
-     a -> b -> [c] -> d 
-
-     a -> b -> {c -> d}      (make c becomes d, effectively deleting c)
-     
-     a -> b -> d
+    - Parameter element: An element remove from this linked list
+    - Returns: The element removed, if any. 
     */
+    @discardableResult
     public func remove(_ element: T) -> T? {
         
         if has(element) {
@@ -59,6 +80,8 @@ public final class LinkedList<T: Equatable> {
     }
 
     private func replaceSelfAsNext() -> T? {
+        count.decrement()
+
         let copy = data
         
         self.data = next?.data
@@ -67,18 +90,11 @@ public final class LinkedList<T: Equatable> {
         return copy
     }
 
-    /*  
-    Contains C
+    /**  
+    Asserts true if the linked list contains the element. 
 
-    [a] -> b -> c -> d      (false, _)
-
-    a -> [b] -> c -> d      (false, _)
-    
-    a -> b -> [c] -> d      (true, _)
-
-    a -> [b] -> c -> d      (false, true)
-
-    [a] -> b -> c -> d      (false, true) -> true
+    - Parameter element: An element to test for membership. 
+    - Returns: True if the linked list contains the element, false otherwise. 
     */
     public func contains(_ element: T) -> Bool {
         
@@ -93,6 +109,35 @@ public final class LinkedList<T: Equatable> {
         return data == element
     }
 }
+
+extension LinkedList: Sequence {
+
+    public func makeIterator() -> LinkedListIterator<T> {
+        return LinkedListIterator<T>(self)
+    }
+}
+
+/**
+A class for iterating through a linked List
+*/
+public struct LinkedListIterator<T: Equatable>: IteratorProtocol {
+
+    private var list: LinkedList<T>?
+
+    init(_ list: LinkedList<T>) {
+        self.list = list
+    }
+
+    /**
+    Returns the next element of the sequence
+    */
+    public mutating func next() -> T? {
+        list = list?.next
+        return list?.data
+    }
+}
+
+
 
 fileprivate extension Int {
 
